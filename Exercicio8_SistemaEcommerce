@@ -1,1 +1,57 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Produto produtoFisico = new ProdutoFisico("Notebook", 3000);
+        Produto produtoDigital = new ProdutoDigital("E-book", 50);
+
+        Console.WriteLine($"Preço do {produtoFisico.Nome} com imposto: {produtoFisico.CalcularPrecoComImposto():C}");
+        Console.WriteLine($"Preço do {produtoDigital.Nome} com imposto: {produtoDigital.CalcularPrecoComImposto():C}");
+    }
+}
+
+using System;
+
+public class ProdutoFisico : Produto
+{
+    public ProdutoFisico(string nome, decimal preco)
+        : base(nome, preco) { }
+
+    public override decimal CalcularPrecoComImposto()
+    {
+        return Preco * 1.1m; // Imposto de 10% para produto físico
+    }
+}
+
+using System;
+
+public class ProdutoDigital : Produto
+{
+    public ProdutoDigital(string nome, decimal preco)
+        : base(nome, preco) { }
+
+    public override decimal CalcularPrecoComImposto()
+    {
+        return Preco * 1.05m; // Imposto de 5% para produto digital
+    }
+}
+
+using System;
+
+public abstract class Produto
+{
+    public string Nome { get; set; }
+    public decimal Preco { get; set; }
+
+    public Produto(string nome, decimal preco)
+    {
+        Nome = nome;
+        Preco = preco;
+    }
+
+    public abstract decimal CalcularPrecoComImposto();
+}
+
 
