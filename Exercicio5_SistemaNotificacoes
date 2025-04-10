@@ -1,1 +1,42 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        INotificador notificador = new NotificadorEmail();
+
+        string destinatario = "exemplo@dominio.com";
+        string mensagem = "Seu pagamento foi processado.";
+
+        if (notificador.ValidarDestinatario(destinatario))
+        {
+            notificador.EnviarNotificacao(destinatario, mensagem);
+        }
+        else
+        {
+            Console.WriteLine("Destinatário inválido.");
+        }
+    }
+}
+
+
+public interface INotificador
+{
+    void EnviarNotificacao(string destinatario, string mensagem);
+    bool ValidarDestinatario(string destinatario);
+}
+
+public class NotificadorEmail : INotificador
+{
+    public void EnviarNotificacao(string destinatario, string mensagem)
+    {
+        Console.WriteLine($"Enviando email para {destinatario}: {mensagem}");
+    }
+
+    public bool ValidarDestinatario(string destinatario)
+    {
+        return destinatario.Contains("@");
+    }
+}
 
