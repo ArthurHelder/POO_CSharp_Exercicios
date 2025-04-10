@@ -1,1 +1,68 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        IArmazenamento armazenamento = new ArmazenamentoLocal();
+
+        // Operações de armazenamento
+        armazenamento.Salvar("arquivo1.txt", new byte[] { 1, 2, 3 });
+        armazenamento.Salvar("arquivo2.txt", new byte[] { 4, 5, 6 });
+        armazenamento.Listar();
+        armazenamento.Excluir("arquivo1.txt");
+        armazenamento.Listar();
+    }
+}
+
+public interface IArmazenamento
+{
+    void Salvar(string arquivo, byte[] dados);
+    byte[] Carregar(string arquivo);
+    void Excluir(string arquivo);
+    void Listar();
+}
+
+using System;
+
+public class ArmazenamentoLocal : ArmazenamentoBase
+{
+    public override void Listar()
+    {
+        Console.WriteLine("Arquivos armazenados localmente:");
+        foreach (var arquivo in arquivos)
+        {
+            Console.WriteLine(arquivo);
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+
+public abstract class ArmazenamentoBase : IArmazenamento
+{
+    protected List<string> arquivos = new List<string>();
+
+    public void Salvar(string arquivo, byte[] dados)
+    {
+        arquivos.Add(arquivo);
+        Console.WriteLine($"Arquivo {arquivo} salvo com sucesso.");
+    }
+
+    public byte[] Carregar(string arquivo)
+    {
+        Console.WriteLine($"Arquivo {arquivo} carregado.");
+        return new byte[0]; // Simulação de carregamento de dados
+    }
+
+    public void Excluir(string arquivo)
+    {
+        arquivos.Remove(arquivo);
+        Console.WriteLine($"Arquivo {arquivo} excluído.");
+    }
+
+    public abstract void Listar(); // Método abstrato a ser implementado nas subclasses
+}
 
