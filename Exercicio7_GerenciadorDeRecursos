@@ -1,1 +1,62 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        using (GerenciadorConexaoBD conexao = new GerenciadorConexaoBD())
+        {
+            conexao.Conectar();
+            conexao.Consultar("SELECT * FROM Tabela");
+        }
+
+        // O bloco 'using' garante que o método Dispose seja chamado automaticamente ao final
+    }
+}
+
+using System;
+
+public class GerenciadorConexaoBD : IDisposable
+{
+    private bool disposed = false;
+
+    public void Conectar()
+    {
+        Console.WriteLine("Conectando ao banco de dados...");
+    }
+
+    public void Consultar(string comando)
+    {
+        Console.WriteLine($"Executando comando: {comando}");
+    }
+
+    // Implementação do padrão IDisposable
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // Método protegido para liberar recursos
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                // Liberar recursos gerenciados
+                Console.WriteLine("Liberando recursos gerenciados...");
+            }
+            // Liberar recursos não gerenciados
+            Console.WriteLine("Liberando recursos não gerenciados...");
+            disposed = true;
+        }
+    }
+
+    ~GerenciadorConexaoBD()
+    {
+        Dispose(false);
+    }
+}
+
 
