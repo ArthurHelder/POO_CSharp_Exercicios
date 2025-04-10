@@ -1,1 +1,85 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Pagamento cartao = new PagamentoCartao(500, DateTime.Now, "Visa", "1234-5678-9012-3456");
+        Pagamento boleto = new PagamentoBoleto(200, DateTime.Now, "123456789012");
+
+        // Processando pagamentos
+        cartao.Processar();
+        cartao.GerarRecibo();
+        Console.WriteLine($"Status: {cartao.Status}\n");
+
+        boleto.Processar();
+        boleto.GerarRecibo();
+        Console.WriteLine($"Status: {boleto.Status}");
+    }
+}
+
+using System;
+
+// Classe abstrata para representar o pagamento
+public abstract class Pagamento
+{
+    public decimal Valor { get; set; }
+    public DateTime Data { get; set; }
+    public string Status { get; set; }
+
+    public Pagamento(decimal valor, DateTime data)
+    {
+        Valor = valor;
+        Data = data;
+        Status = "Pendente";
+    }
+
+    public abstract void Processar();
+    public abstract void GerarRecibo();
+}
+
+// Classes derivadas para diferentes métodos de pagamento
+public class PagamentoCartao : Pagamento
+{
+    public string Bandeira { get; set; }
+    public string NumeroCartao { get; set; }
+
+    public PagamentoCartao(decimal valor, DateTime data, string bandeira, string numeroCartao)
+        : base(valor, data)
+    {
+        Bandeira = bandeira;
+        NumeroCartao = numeroCartao;
+    }
+
+    public override void Processar()
+    {
+        Status = "Processado no Cartão";
+    }
+
+    public override void GerarRecibo()
+    {
+        Console.WriteLine($"Recibo do pagamento de {Valor:C} com cartão {Bandeira}.");
+    }
+}
+
+public class PagamentoBoleto : Pagamento
+{
+    public string CodigoBarras { get; set; }
+
+    public PagamentoBoleto(decimal valor, DateTime data, string codigoBarras)
+        : base(valor, data)
+    {
+        CodigoBarras = codigoBarras;
+    }
+
+    public override void Processar()
+    {
+        Status = "Processado via Boleto";
+    }
+
+    public override void GerarRecibo()
+    {
+        Console.WriteLine($"Recibo do pagamento de {Valor:C} via boleto.");
+    }
+}
 
