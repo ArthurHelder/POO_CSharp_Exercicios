@@ -1,1 +1,66 @@
+using System;
 
+class Program
+{
+    static void Main()
+    {
+        // Criando um produto
+        Produto produto = new Produto("P001", "Camiseta", 50.0m, 10);
+
+        // Exibindo as propriedades do produto
+        Console.WriteLine($"Produto: {produto.Nome}");
+        Console.WriteLine($"Preço: {produto.Preco}");
+        Console.WriteLine($"Estoque: {produto.Estoque}");
+        Console.WriteLine($"Valor em Estoque: {produto.ValorEmEstoque}");
+        Console.WriteLine($"Status: {produto.Status}");
+    }
+}
+
+using System;
+
+// A classe Produto é projetada para gerenciar informações de produtos e aplicar validações nas propriedades.
+public class Produto
+{
+    public string Codigo { get; set; }
+    public string Nome { get; set; }
+
+    private decimal _preco;
+    public decimal Preco
+    {
+        get => _preco;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("O preço não pode ser negativo.");
+            _preco = value;
+        }
+    }
+
+    private int _estoque;
+    public int Estoque
+    {
+        get => _estoque;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("O estoque não pode ser negativo.");
+            _estoque = value;
+        }
+    }
+
+    public DateTime DataCadastro { get; } = DateTime.Now;
+
+    // Propriedade calculada para determinar o valor total do estoque
+    public decimal ValorEmEstoque => Preco * Estoque;
+
+    // Propriedade calculada para determinar o status do produto
+    public string Status => Estoque > 0 ? "Disponível" : "Esgotado";
+
+    public Produto(string codigo, string nome, decimal preco, int estoque)
+    {
+        Codigo = codigo;
+        Nome = nome;
+        Preco = preco;
+        Estoque = estoque;
+    }
+}
