@@ -1,1 +1,17 @@
+using System;
 
+class Program
+{
+    static void Main()
+    {
+        // Criando um produto
+        Produto produto = new Produto("P001", "Camiseta", 50.0m, 10);
+
+        // Exibindo as propriedades do produto
+        Console.WriteLine($"Produto: {produto.Nome}");
+        Console.WriteLine($"Preço: {produto.Preco}");
+        Console.WriteLine($"Estoque: {produto.Estoque}");
+        Console.WriteLine($"Valor em Estoque: {produto.ValorEmEstoque}");
+        Console.WriteLine($"Status: {produto.Status}");
+    }
+}
