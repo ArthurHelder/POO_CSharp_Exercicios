@@ -1,0 +1,76 @@
+Exercício 1: Sistema Bancário (Encapsulamento)
+Objetivo: Desenvolver um sistema bancário aplicando o encapsulamento.
+
+Tarefas: Criar a classe ContaBancaria com atributos privados como saldo, numeroConta, titular e transacoes. Implementar métodos como Depositar, Sacar e VerExtrato, além de uma classe Transacao para registrar movimentações.
+
+Princípio de POO: Encapsulamento - Proteger dados sensíveis (como saldo) contra acesso não controlado e permitir modificações apenas através de métodos públicos.
+
+Desafio: Garantir que o saldo seja manipulado apenas pelos métodos adequados e que as transações sejam corretamente registradas.
+
+Exercício 2: Sistema de Gestão de Produtos (Properties)
+Objetivo: Criar um sistema de gestão de produtos utilizando diferentes tipos de properties.
+
+Tarefas: Implementar a classe Produto com propriedades autoimplementadas, propriedades com validação (preço e estoque), e propriedades calculadas (valor em estoque, status). Validar os setters e criar múltiplos construtores.
+
+Princípio de POO: Propriedades - Utilizar propriedades para encapsular dados e aplicar validações.
+
+Desafio: Implementar as validações e garantir que os valores não possam ser negativos ou inválidos.
+
+Exercício 3: Sistema de RH (Herança)
+Objetivo: Desenvolver um sistema de RH com hierarquia de classes e herança.
+
+Tarefas: Criar a classe base Funcionario e derivar classes como Desenvolvedor, Gerente e Atendente. Sobrescrever os métodos CalcularSalario e ExibirDados nas classes derivadas.
+
+Princípio de POO: Herança - Permitir a reutilização de código e a especialização de classes.
+
+Desafio: Implementar a sobrescrição correta de métodos e garantir que as funcionalidades sejam estendidas adequadamente.
+
+Exercício 4: Sistema de Pagamentos (Polimorfismo)
+Objetivo: Implementar um sistema de pagamentos utilizando polimorfismo.
+
+Tarefas: Criar a classe abstrata Pagamento com métodos como Processar e GerarRecibo. Criar subclasses para diferentes tipos de pagamento (cartão, boleto, pix). Implementar um processador que utilize o polimorfismo para processar os pagamentos.
+
+Princípio de POO: Polimorfismo - Permitir que diferentes tipos de pagamento sejam processados de forma unificada, chamando os mesmos métodos para objetos de tipos diferentes.
+
+Desafio: Implementar o polimorfismo de maneira que o sistema consiga processar diferentes tipos de pagamento de forma genérica.
+
+Exercício 5: Sistema de Notificações (Interfaces)
+Objetivo: Criar um sistema de notificações utilizando interfaces.
+
+Tarefas: Definir a interface INotificador e implementar notificadores para diferentes canais (email, SMS, push). Criar um gerenciador que envia mensagens através de todos os canais registrados.
+
+Princípio de POO: Interfaces - Criar uma interface para garantir que diferentes tipos de notificadores sigam um contrato comum, facilitando a expansão do sistema.
+
+Desafio: Implementar múltiplos notificadores e garantir que o sistema consiga enviar notificações por diferentes canais.
+
+Exercício 6: Sistema de Armazenamento (Interfaces vs Classes Abstratas)
+Objetivo: Explorar as diferenças entre interfaces e classes abstratas.
+
+Tarefas: Criar a interface IArmazenamento e a classe abstrata ArmazenamentoBase. Implementar classes concretas para diferentes tipos de armazenamento (local, nuvem, memória).
+
+Princípio de POO: Interfaces e Classes Abstratas - Comparar o uso de interfaces e classes abstratas para definir contratos e comportamentos comuns.
+
+Desafio: Identificar a melhor abordagem entre usar uma interface ou classe abstrata para um sistema de armazenamento com múltiplos tipos.
+
+Exercício 7: Gerenciador de Recursos (IDisposable)
+Objetivo: Implementar o padrão Disposable para o gerenciamento correto de recursos.
+
+Tarefas: Criar a classe GerenciadorConexaoBD que simula uma conexão com o banco de dados e implementa o padrão IDisposable. Implementar métodos para executar consultas e liberar recursos corretamente.
+
+Princípio de POO: IDisposable - Garantir que recursos sejam liberados corretamente após o uso, evitando vazamentos de memória.
+
+Desafio: Implementar o padrão completo de IDisposable, com disposições seguras e uso do GC.SuppressFinalize.
+
+Exercício 8: Projeto Integrado - Sistema de E-commerce
+Objetivo: Desenvolver um sistema de e-commerce aplicando todos os conceitos estudados.
+
+Tarefas: Implementar componentes como catálogo de produtos, carrinho de compras, sistema de pagamento e notificações. Integrar os componentes e garantir que o sistema opere de forma eficiente e modular.
+
+Princípio de POO: Encapsulamento, Herança, Polimorfismo, Interfaces - Integrar todos os conceitos de POO, garantindo um sistema modular e extensível.
+
+Desafio: Garantir que todos os componentes funcionem em conjunto, mantendo a flexibilidade e escalabilidade do sistema.
+
+Conclusão
+Este resumo abrange todos os exercícios solicitados, mostrando como os conceitos fundamentais de POO foram aplicados para desenvolver sistemas com boas práticas de codificação e design. Cada exercício aborda um aspecto específico da POO, como encapsulamento, herança, polimorfismo, interfaces e disposabilidade, com o objetivo de proporcionar uma compreensão completa e prática desses princípios.
+
+Se precisar de mais detalhes sobre algum exercício, posso ajudar a expandir!
