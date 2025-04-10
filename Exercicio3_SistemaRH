@@ -1,1 +1,101 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Funcionario dev = new Desenvolvedor("Ana Souza", "12345678901", DateTime.Now.AddYears(-3), 5000, "C#", 3);
+        Funcionario gerente = new Gerente("Carlos Oliveira", "09876543210", DateTime.Now.AddYears(-5), 7000, 10, 1500);
+
+        // Exibindo dados e cálculos de salário
+        dev.ExibirDados();
+        Console.WriteLine($"Salário: {dev.CalcularSalario():C}\n");
+
+        gerente.ExibirDados();
+        Console.WriteLine($"Salário: {gerente.CalcularSalario():C}");
+    }
+}
+
+using System;
+
+// Classe base Funcionario com propriedades comuns e métodos virtuais.
+public class Funcionario
+{
+    public string Nome { get; set; }
+    public string CPF { get; set; }
+    public DateTime DataAdmissao { get; set; }
+    public decimal SalarioBase { get; set; }
+
+    public Funcionario(string nome, string cpf, DateTime dataAdmissao, decimal salarioBase)
+    {
+        Nome = nome;
+        CPF = cpf;
+        DataAdmissao = dataAdmissao;
+        SalarioBase = salarioBase;
+    }
+
+    // Método virtual para ser sobrescrito nas classes derivadas.
+    public virtual decimal CalcularSalario()
+    {
+        return SalarioBase;
+    }
+
+    public virtual void ExibirDados()
+    {
+        Console.WriteLine($"Nome: {Nome}, CPF: {CPF}, Data de Admissão: {DataAdmissao.ToShortDateString()}, Salário Base: {SalarioBase:C}");
+    }
+}
+
+// Classe derivada Desenvolvedor
+public class Desenvolvedor : Funcionario
+{
+    public string Especialidade { get; set; }
+    public int Nivel { get; set; }
+
+    public Desenvolvedor(string nome, string cpf, DateTime dataAdmissao, decimal salarioBase, string especialidade, int nivel)
+        : base(nome, cpf, dataAdmissao, salarioBase)
+    {
+        Especialidade = especialidade;
+        Nivel = nivel;
+    }
+
+    // Sobrescrevendo o método CalcularSalario para adicionar bônus baseado no nível.
+    public override decimal CalcularSalario()
+    {
+        decimal bonus = Nivel * 500;
+        return SalarioBase + bonus;
+    }
+
+    public override void ExibirDados()
+    {
+        base.ExibirDados();
+        Console.WriteLine($"Especialidade: {Especialidade}, Nível: {Nivel}");
+    }
+}
+
+// Classe derivada Gerente
+public class Gerente : Funcionario
+{
+    public int NumeroEquipe { get; set; }
+    public decimal BonusPorResultados { get; set; }
+
+    public Gerente(string nome, string cpf, DateTime dataAdmissao, decimal salarioBase, int numeroEquipe, decimal bonusPorResultados)
+        : base(nome, cpf, dataAdmissao, salarioBase)
+    {
+        NumeroEquipe = numeroEquipe;
+        BonusPorResultados = bonusPorResultados;
+    }
+
+    // Sobrescrevendo o método CalcularSalario para adicionar o bônus de resultados.
+    public override decimal CalcularSalario()
+    {
+        return SalarioBase + BonusPorResultados;
+    }
+
+    public override void ExibirDados()
+    {
+        base.ExibirDados();
+        Console.WriteLine($"Número de Equipe: {NumeroEquipe}, Bônus por Resultados: {BonusPorResultados:C}");
+    }
+}
 
